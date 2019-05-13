@@ -46,7 +46,7 @@ currentCharade = random.randint(0,15)
 score = 0
 correctVisible = False
 compteur = 0
-
+listIndexUsedCharade = []
 running = True
 while running:
 	for event in pygame.event.get():
@@ -115,7 +115,12 @@ while running:
 					print('passed')
 					score += 1
 					compteur += 1
-					currentCharade = random.randint(0,15)
+					currentCharade	 = random.randint(0,15)
+					while (currentCharade  in listIndexUsedCharade):
+						currentCharade	= random.randint(0,15)
+						pass
+					listIndexUsedCharade += [currentCharade]
+		
 					userInput = ''
 					correctVisible = False
 
