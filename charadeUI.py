@@ -4,14 +4,13 @@ import random
 
 
 #Screen specifities
-WIDTH = 600
-HEIGHT = 300
+WIDTH = 550
+HEIGHT = 450
 GREEN = (0,255,0)
 BLACK = (0,0,0)
 RED= (255,0,0)
 BLUE= (0,0,255)
 WHITE = (255,255,255)
-
 
 #Data
 mon_premier= ["se trouve dans la gueule du loup.", "est un oiseau noir à queue blanche.", "est au milieu de la figure.", "ouvre les portes.", "est le contraire de haut.", "se trouve au milieu du visage.", "est entre 1 et 3.", "est un animal qui vit sur les têtes.", "est un insecte qui vit dans les cheveux.", "est le trou d’une aiguille.", "se trouve sur le visage des personnes âgées.", "est un objet qui sert à faire le ménage.", "est un animal herbivore.", "est un métal précieux.", "est un rongeur à queue longue."]
@@ -31,7 +30,7 @@ rep_user = ["","","",""]
 #initialistation de pygame
 pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
-
+fond = pygame.image.load("background00.jpg").convert()
 
 font_name = pygame.font.match_font('times new roman')
 def draw_text(surface,color,text,size,x,y):
@@ -42,7 +41,7 @@ def draw_text(surface,color,text,size,x,y):
     surface.blit(text_surface,text_rect)
 
 userInput = ""
-currentCharade = random.randint(0,15)
+currentCharade = random.randint(0,14)
 score = 0
 correctVisible = False
 compteur = 0
@@ -130,23 +129,24 @@ while running:
 					#afficher msg bonne rep
 			
 					#afficher msg mauv rep
-	screen.fill(GREEN)
+	screen.blit(fond, (0,0))
+
 	if ( compteur < 4): 
-		draw_text(screen,BLACK,'Mon premier ' + mon_premier[currentCharade],16,WIDTH/2,50)
-		draw_text(screen,BLACK,'Mon deuxieme ' + mon_deuxieme[currentCharade],16,WIDTH/2,80)
+		draw_text(screen,BLACK,'Mon premier ' + mon_premier[currentCharade],16,WIDTH/2,120)
+		draw_text(screen,BLACK,'Mon deuxieme ' + mon_deuxieme[currentCharade],16,WIDTH/2,150)
 		if mon_troisieme[currentCharade] != "":
-			draw_text(screen,BLACK,'Mon troisieme ' + mon_troisieme[currentCharade],16,WIDTH/2,110)
+			draw_text(screen,BLACK,'Mon troisieme ' + mon_troisieme[currentCharade],16,WIDTH/2,180)
 		if mon_quatrieme[currentCharade] != "":
-			draw_text(screen,BLACK,'Mon quatrieme ' + mon_quatrieme[currentCharade],16,WIDTH/2,140)
-		draw_text(screen,BLACK,'Mon tout ' + mon_tout[currentCharade],16,WIDTH/2,170)
-		draw_text(screen,BLUE,'Votre score est: ' + str(score),16,70,20)
-		draw_text(screen,RED,userInput,16,WIDTH/2,200)
+			draw_text(screen,BLACK,'Mon quatrieme ' + mon_quatrieme[currentCharade],16,WIDTH/2,210)
+		draw_text(screen,BLACK,'Mon tout ' + mon_tout[currentCharade],16,WIDTH/2,240)
+		draw_text(screen,BLUE,'Votre score est: ' + str(score),16,70,95)
+		draw_text(screen,RED,userInput,16,WIDTH/2,280)
 
 		if correctVisible:
-			draw_text(screen,BLACK,'Mauvaise reponse , ressayer' ,16,WIDTH/2,230)
+			draw_text(screen,BLACK,'Mauvaise reponse , ressayer' ,16,WIDTH/2,300)
 
 	else:
-		draw_text(screen,BLACK,'Vous pouvez passez au prochain niveau',16,WIDTH/2,80)
+		draw_text(screen,BLACK,'Bravo! Vous pouvez passez au prochain niveau!',16,WIDTH/2,HEIGHT/2)
 
 	pygame.display.update()
 
@@ -168,7 +168,6 @@ pygame.quit()
 change background
 change font
 change input button ( userInput and score)
-repeated charade
 
 '''
 
@@ -195,5 +194,3 @@ repeated charade
 
 
 
-#create a list that will store the charades that have been used.
-#try to loop on rand till the computer finds a charad that hasnt been used
