@@ -30,7 +30,7 @@ rep_user = ["","","",""]
 #initialistation de pygame
 pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
-fond = pygame.image.load("background00.jpg").convert()
+fond = pygame.image.load("backgr.jpg").convert()
 
 font_name = pygame.font.match_font('times new roman')
 def draw_text(surface,color,text,size,x,y):
